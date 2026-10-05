@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Task Manager</title>
+</head>
+<body>
+
+    <h1>Hello {{data.name}}</h1>
+    <p>Welcome to our School Task Manager. The task list is mentioned below:</p>
+
+    {% if data.tasks%}
+        <ul>
+            {% for task in data.tasks %}
+                <li> {{task}} </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No task available.</p>
+    {% endif %}
+
+</body>
+</html>
