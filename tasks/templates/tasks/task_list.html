@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Tasks</title>
+</head>
+
+<body>
+
+    <h1>My Tasks</h1>
+
+    <table border = 1 cellpadding=5>
+        {% for task in tasks %}
+            <tr>
+               <td> {{ task.title }} </td>
+               <td> {{ task.description }}  </td>
+               <td> {{ task.priority }} </td>
+               <td> {{ task.completed }}    </td>
+
+            </tr>
+        {% endfor %}
+        </table>
+
+</body>
+</html>

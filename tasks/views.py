@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Task
 # Create your views here.
 
 def hello(request):
@@ -21,3 +22,9 @@ def about(request):
     
     return render(request, "tasks/about.html", {'stu_data':stu_data})
     
+def task_list(request):
+    tasks = Task.objects.all()
+
+    return render(request,
+                  'tasks/task_list.html',
+                  {'tasks':tasks})
