@@ -26,11 +26,9 @@
         <div>
             <h2>
                 {{ task.title }}
-                <a href="/tasks/edit/{{ task.id }}/">Edit</a>
+                
             </h2> 
-
             
-
             <p>{{ task.description }}</p>
 
             <p>Priority: {{ task.priority }}</p>
@@ -40,6 +38,17 @@
             {% else %}
                 <p>Status: Pending</p>
             {% endif %}
+
+            <a href="/tasks/edit/{{ task.id }}/">Edit</a>
+
+            <form method="POST" action="/tasks/delete/{{ task.id }}/">
+
+                {% csrf_token %}
+
+                <button type="submit">Delete</button>
+
+            </form>
+
         </div>
 
         <hr>

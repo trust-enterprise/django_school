@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Task
 from .forms import TaskForm
@@ -66,3 +66,12 @@ def task_edit(request, id):
                       'form':form,
                       'task': task
                   })
+
+
+def task_delete(request, id):
+    task = Task.objects.get(id=id)
+
+    if request.method == "POST":
+        task.delete()
+
+    return  redirect('/tasks/')

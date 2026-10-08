@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
-from tasks.views import hello, about, task_list, task_edit
+from tasks.views import hello, about, task_list, task_edit, task_delete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', hello),
     path('about/', about),
     path('tasks/', task_list),
-    path('tasks/edit/<int:id>/', task_edit)
+    path('tasks/edit/<int:id>/', task_edit),
+    path('tasks/delete/<int:id>/', task_delete)
 ]
