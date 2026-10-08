@@ -31,12 +31,7 @@ def task_list(request):
         form = TaskForm(request.POST)
 
         if form.is_valid():
-
-            title = form.cleaned_data["title"]
-
-            Task.objects.create(
-                title=title
-            )
+            form.save()
 
     else:
 
