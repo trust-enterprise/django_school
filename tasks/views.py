@@ -47,3 +47,22 @@ def task_list(request):
             'form': form
         }
     )
+
+
+def task_edit(request, id):
+    task = Task.objects.get(id = id)
+
+    if request.method == "POST":
+        form = TaskForm(request.POST, instance= task)
+
+        if form.is_valid():
+            form.save()
+    else:
+        form = TaskForm(instance= task)
+
+    return render(request,
+                  "tasks/task_edit.html",
+                  {
+                      'form':form,
+                      'task': task
+                  })
