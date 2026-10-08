@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Task
+from .forms import TaskForm
 # Create your views here.
 
 def hello(request):
@@ -21,10 +22,33 @@ def about(request):
     }
     
     return render(request, "tasks/about.html", {'stu_data':stu_data})
-    
+
+
 def task_list(request):
+
+    if request.method == "POST":
+
+        form = TaskForm(request.POST)
+
+        if form.is_valid():
+
+            title = form.cleaned_data["title"]
+
+            Task.objects.create(
+                title=title
+            )
+
+    else:
+
+        form = TaskForm()
+
     tasks = Task.objects.all()
 
-    return render(request,
-                  'tasks/task_list.html',
-                  {'tasks':tasks})
+    return render(
+        request,
+        'tasks/task_list.html',
+        {
+            'tasks': tasks,
+            'form': form
+        }
+    )

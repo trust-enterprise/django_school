@@ -1,24 +1,50 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>My Tasks</title>
+    <title>School Task Manager</title>
 </head>
 
 <body>
 
-    <h1>My Tasks</h1>
+    <h1>School Task Manager</h1>
 
-    <table border = 1 cellpadding=5>
-        {% for task in tasks %}
-            <tr>
-               <td> {{ task.title }} </td>
-               <td> {{ task.description }}  </td>
-               <td> {{ task.priority }} </td>
-               <td> {{ task.completed }}    </td>
+    <form method="POST">
 
-            </tr>
-        {% endfor %}
-        </table>
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Add Task</button>
+
+    </form>
+
+    <hr>
+
+    {% for task in tasks %}
+
+        <div>
+            <h2>{{ task.title }}</h2>
+
+            <p>{{ task.description }}</p>
+
+            <p>Priority: {{ task.priority }}</p>
+
+            {% if task.completed %}
+                <p>Status: Completed</p>
+            {% else %}
+                <p>Status: Pending</p>
+            {% endif %}
+        </div>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No tasks available.</p>
+
+    {% endfor %}
 
 </body>
+
 </html>
